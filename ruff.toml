@@ -1,0 +1,12 @@
+# ruff.toml
+line-length = 140
+select = [
+    "E",  # Pycodestyle errors
+    "F",  # Pyflakes
+    "I",  # Isort (import sorting)
+    "UP", # Pyupgrade (modern Python syntax)
+    "W",  # Pycodestyle warnings
+]
+ignore = [
+    "E203",  # Whitespace before ':' (conflicts with Black)
+]
