@@ -1,9 +1,19 @@
-[project]
+[tool.poetry]
 name = "readgpt"
 version = "0.1.0"
 description = "ReadGPT - Summarize and chat with any article using AI"
-requires-python = ">=3.12"
-dependencies = [
-    "fastapi>=0.115.8",
-    "uvicorn>=0.34.0",
-]
+authors = ["Feliciano Lima <fsfelicianosantana@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "main.py" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.8"
+uvicorn = "^0.34.0"
+
+[tool.poetry.dev-dependencies]
+# TODO: add pytest
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
