@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: readgpt
+    name: readgpt-backend
     runtime: python
     plan: free
     autoDeploy: false
@@ -12,7 +12,7 @@ services:
       ignoredPaths:
         - /*.test.py
   - type: web
-    name: frontend
+    name: readgpt-frontend
     runtime: static
     rootDir: frontend
     buildCommand: npm install; npm run build
