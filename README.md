@@ -223,4 +223,4 @@ To make the app a **Progressive Web App (PWA)**, we use the following:
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the [CC BY-NC-ND](https://creativecommons.org/licenses/by-nc-nd/4.0/). See the LICENSE file for details.
