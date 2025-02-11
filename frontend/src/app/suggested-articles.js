@@ -7,7 +7,6 @@ import {
   TableCell,
   TableRow,
 } from "@/components/table";
-import { motion } from "framer-motion";
 
 export default function SuggestedArticles() {
   const [loading, setLoading] = useState(true);
@@ -20,7 +19,6 @@ export default function SuggestedArticles() {
         setLoading(true);
         setError(false);
 
-        // Fetch 5 random articles
         const response = await axios.get("https://en.wikipedia.org/w/api.php", {
           params: {
             action: "query",
@@ -32,11 +30,16 @@ export default function SuggestedArticles() {
           },
         });
 
-        // Extract the titles from the response
-        const randomArticles = response.data.query.random.map((article) => ({
-          title: article.title,
-          url: `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title.replace(/ /g, "_"))}`,
-        }));
+        const randomArticles = response.data.query.random.map((article) => {
+          const title =
+            article.title.length > 40
+              ? `${article.title.slice(0, 40)}...`
+              : article.title;
+          return {
+            title,
+            url: `https://en.wikipedia.org/wiki/${encodeURIComponent(article.title.replace(/ /g, "_"))}`,
+          };
+        });
 
         setArticles(randomArticles);
       } catch (err) {
