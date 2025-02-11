@@ -9,9 +9,11 @@ load_dotenv()
 
 app = FastAPI()
 
+frontend_url = os.getenv("FRONTEND_URL")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_URL")],
+    allow_origins=[f"https://{frontend_url}", f"https://www.{frontend_url}"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type", "Accept"],
