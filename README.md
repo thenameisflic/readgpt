@@ -9,6 +9,7 @@ ReadGPT.news is a progressive web application that allows users to paste a link 
 1. **Article Summarization**:
    - Users paste a link to an article.
    - The app extracts the article content and generates a concise summary using OpenAI's GPT API.
+   - We leverage WikiMedia's REST API to make some suggestions for first-time users.
 
 2. **Interactive Chat**:
    - Users can ask questions or discuss the article in a chat interface.
