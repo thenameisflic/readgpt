@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, TableBody, TableCell, TableRow } from "@/components/table";
+import {
+  MotionTableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@/components/table";
+import { motion } from "framer-motion";
 
 export default function SuggestedArticles() {
   const [loading, setLoading] = useState(true);
@@ -83,12 +90,19 @@ export default function SuggestedArticles() {
   return (
     <>
       <div>Wikipedia articles you might find interesting:</div>
-      <Table className="[--gutter:--spacing(6)] sm:[--gutter:--spacing(8)]">
-        <TableBody>
-          {articles.map((article) => (
-            <TableRow key={article.url} href={article.url} className="px-4">
-              <TableCell className="font-medium">{article.title}</TableCell>
-            </TableRow>
+      <Table className="[--gutter:--spacing(6)] sm:[--gutter:--spacing(8)] overflow-y-hidden">
+        <TableBody className="overflow-y-hidden">
+          {articles.map((article, index) => (
+            <MotionTableRow
+              href={article.url}
+              className="px-4"
+              index={index}
+              key={article.url}
+            >
+              <TableCell className="font-medium tracking-wide">
+                {article.title}
+              </TableCell>
+            </MotionTableRow>
           ))}
         </TableBody>
       </Table>

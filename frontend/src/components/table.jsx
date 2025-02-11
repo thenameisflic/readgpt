@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import { createContext, useContext, useState } from "react";
 import { Link } from "./link";
+import { motion } from "framer-motion";
 
 const TableContext = createContext({
   bleed: false,
@@ -64,6 +65,38 @@ const TableRowContext = createContext({
   target: undefined,
   title: undefined,
 });
+
+export function MotionTableRow({
+  index,
+  href,
+  target,
+  title,
+  className,
+  ...props
+}) {
+  let { striped } = useContext(TableContext);
+
+  return (
+    <TableRowContext.Provider value={{ href, target, title }}>
+      <motion.tr
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.12, duration: 0.5 }}
+        {...props}
+        className={clsx(
+          className,
+          href &&
+            "has-[[data-row-link][data-focus]]:outline-2 has-[[data-row-link][data-focus]]:-outline-offset-2 has-[[data-row-link][data-focus]]:outline-blue-500 dark:focus-within:bg-white/[2.5%]",
+          striped && "even:bg-zinc-950/[2.5%] dark:even:bg-white/[2.5%]",
+          href && striped && "hover:bg-zinc-950/5 dark:hover:bg-white/5",
+          href &&
+            !striped &&
+            "hover:bg-zinc-950/[2.5%] dark:hover:bg-white/[2.5%]",
+        )}
+      />
+    </TableRowContext.Provider>
+  );
+}
 
 export function TableRow({ href, target, title, className, ...props }) {
   let { striped } = useContext(TableContext);
