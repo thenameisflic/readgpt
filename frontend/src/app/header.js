@@ -33,7 +33,7 @@ export default function Header() {
         </Link>
         <NavbarSpacer />
         <NavbarSection>
-          <NavbarItem href="/search" aria-label="Search" className="font-sans">
+          <NavbarItem href="/about" aria-label="About" className="font-sans">
             About
           </NavbarItem>
         </NavbarSection>

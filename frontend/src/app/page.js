@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
-import Main from "@/app/main";
 import Header from "@/app/header";
 import ArticleSummarizer from "@/app/article-summarizer";
 

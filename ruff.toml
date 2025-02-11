@@ -1,6 +1,6 @@
 # ruff.toml
 line-length = 140
-select = [
+lint.select = [
     "E",  # Pycodestyle errors
     "F",  # Pyflakes
     "I",  # Isort (import sorting)

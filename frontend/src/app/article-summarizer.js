@@ -4,13 +4,32 @@ import { Button } from "@/components/button";
 import { LinkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import SuggestedArticles from "./suggested-articles";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function ArticleSummarizer() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [articleUrl, setArticleUrl] = useState(null);
+  const router = useRouter();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    window.location.href = articleUrl;
+    setLoading(true);
+
+    const generateSummary = async () => {
+      const response = await axios.post(
+        process.env.NEXT_PUBLIC_BACKEND_URL + "/summarize",
+        {
+          url: articleUrl,
+        },
+      );
+      console.log(response);
+      window.localStorage.setItem("article", JSON.stringify(response.data));
+      router.push("/summary");
+    };
+
+    generateSummary();
   };
 
   const onArticleUrlChange = (e) => {
