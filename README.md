@@ -209,9 +209,10 @@ To make the app a **Progressive Web App (PWA)**, we use the following:
 - Install dependencies:
 ```poetry install```
 - Set up Redis for rate limiting.
-- Add your OpenAI API key to the environment variables.
+- Update your environment variables with a .env file (check .env.example)
 
 3. **Set Up the Frontend**:
+- Update your environment variables with a .env file (check frontend/.env.example)
 - Install dependencies:
   ```
   cd frontend
