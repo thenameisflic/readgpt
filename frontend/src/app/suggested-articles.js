@@ -5,7 +5,6 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableRow,
 } from "@/components/table";
 import Spinner from "@/components/spinner";
 
@@ -75,7 +74,7 @@ export default function SuggestedArticles({ onClick }) {
   return (
     <>
       <div>Wikipedia articles you might find interesting:</div>
-      <Table className="[--gutter:--spacing(6)] sm:[--gutter:--spacing(8)] overflow-y-hidden">
+      <Table className="[--gutter:--spacing(6)] sm:[--gutter:--spacing(8)] overflow-y-hidden max-w-full">
         <TableBody className="overflow-y-hidden">
           {articles.map((article, index) => (
             <MotionTableRow
