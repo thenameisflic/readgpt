@@ -7,8 +7,9 @@ import {
   TableCell,
   TableRow,
 } from "@/components/table";
+import Spinner from "@/components/spinner";
 
-export default function SuggestedArticles() {
+export default function SuggestedArticles({ onClick }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [articles, setArticles] = useState([]);
@@ -60,26 +61,7 @@ export default function SuggestedArticles() {
           <div className="flex-1">
             Looking for suggested articles in Wikipedia...
           </div>
-          <svg
-            className="mr-3 -ml-1 size-5 animate-spin text-white"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            ></circle>
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            ></path>
-          </svg>{" "}
+          <Spinner className="mr-3 -ml-1" />{" "}
         </div>
         <div style={{ height: 285 }}></div> {/* Skeleton to avoid jitter */}
       </>
@@ -97,7 +79,7 @@ export default function SuggestedArticles() {
         <TableBody className="overflow-y-hidden">
           {articles.map((article, index) => (
             <MotionTableRow
-              href={article.url}
+              onClick={() => onClick(article)}
               className="px-4"
               index={index}
               key={article.url}

@@ -72,9 +72,12 @@ export function MotionTableRow({
   target,
   title,
   className,
+  onClick,
   ...props
 }) {
   let { striped } = useContext(TableContext);
+
+  const isClickable = href || onClick;
 
   return (
     <TableRowContext.Provider value={{ href, target, title }}>
@@ -82,14 +85,15 @@ export function MotionTableRow({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.12, duration: 0.5 }}
+        onClick={onClick}
         {...props}
         className={clsx(
           className,
-          href &&
-            "has-[[data-row-link][data-focus]]:outline-2 has-[[data-row-link][data-focus]]:-outline-offset-2 has-[[data-row-link][data-focus]]:outline-blue-500 dark:focus-within:bg-white/[2.5%]",
+          isClickable &&
+            "has-[[data-row-link][data-focus]]:outline-2 has-[[data-row-link][data-focus]]:-outline-offset-2 has-[[data-row-link][data-focus]]:outline-blue-500 dark:focus-within:bg-white/[2.5%] cursor-pointer",
           striped && "even:bg-zinc-950/[2.5%] dark:even:bg-white/[2.5%]",
-          href && striped && "hover:bg-zinc-950/5 dark:hover:bg-white/5",
-          href &&
+          isClickable && striped && "hover:bg-zinc-950/5 dark:hover:bg-white/5",
+          isClickable &&
             !striped &&
             "hover:bg-zinc-950/[2.5%] dark:hover:bg-white/[2.5%]",
         )}
