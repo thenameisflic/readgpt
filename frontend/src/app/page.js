@@ -1,29 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/app/header";
 import ArticleSummarizer from "@/app/article-summarizer";
+import { useSearchParams } from "next/navigation";
+import Summary from "@/app/summary";
 
 export default function Home() {
-  const [response, setResponse] = useState(null);
+  const searchParams = useSearchParams();
+  const [article, setArticle] = useState(null);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/`);
-      const result = await response.json();
-      setResponse(result);
-    } catch (error) {
-      console.log("error", error);
+  // Read the query parameter `a`
+  const articleUrl = searchParams.get("a");
+
+  useEffect(() => {
+    if (articleUrl) {
+      // Decode the article URL
+      const decodedUrl = decodeURIComponent(articleUrl);
+
+      // Fetch or retrieve the article data
+      const storedArticle = window.localStorage.getItem("article");
+      if (storedArticle) {
+        setArticle(JSON.parse(storedArticle));
+      }
     }
-  };
+  }, [articleUrl]);
 
-  return (
-    <>
-      <Header />
-      <ArticleSummarizer />
-      <footer className="w-full py-4 flex justify-center font-sans text-center">
-        Copyright &copy; 2025 ReadGPT by Feliciano Lima - All rights reserved
-      </footer>
-    </>
-  );
+  return <>{articleUrl ? <Summary /> : <ArticleSummarizer />}</>;
 }

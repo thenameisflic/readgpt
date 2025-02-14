@@ -26,7 +26,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${alegreyaSans.variable} ${alegreyaSerif.variable} antialiased flex h-screen flex-col w-full`}
       >
+        <Header />
         {children}
+        <footer className="w-full py-4 flex justify-center font-sans text-center">
+          Copyright &copy; 2025 ReadGPT by Feliciano Lima - All rights reserved
+        </footer>
       </body>
     </html>
   );

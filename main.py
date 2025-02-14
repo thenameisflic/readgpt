@@ -47,7 +47,7 @@ def remove_all_attributes(soup):
 async def summarize(request: SummarizationRequest):
     response = requests.get(request.url)
     doc = Document(response.text)
-    soup = BeautifulSoup(doc.summary(), "html.parser")
+    soup = BeautifulSoup(doc.summary(html_partial=True), "html.parser")
     soup = remove_all_attributes(soup)
 
     summary = " ".join(soup.stripped_strings)
@@ -101,7 +101,7 @@ async def summarize(request: SummarizationRequest):
         presence_penalty=0,
     )
 
-    return {"title": doc.title(), "content": summary, "gpt": json.loads(gpt_response.choices[0].message.content)}
+    return {"title": doc.title(), "content": doc.summary(html_partial=True), "gpt": json.loads(gpt_response.choices[0].message.content)}
 
 
 if __name__ == "__main__":

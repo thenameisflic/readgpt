@@ -32,7 +32,7 @@ export default function ArticleSummarizer() {
         );
     }, 6000);
 
-    setWarning("Loading your article summary...");
+    setWarning("Loading your article...");
     try {
       const response = await axios.post(
         process.env.NEXT_PUBLIC_BACKEND_URL + "/summarize",
@@ -43,7 +43,8 @@ export default function ArticleSummarizer() {
       );
       hasFinished = true;
       window.localStorage.setItem("article", JSON.stringify(response.data));
-      router.push("/summary");
+      const encodedUrl = encodeURIComponent(url);
+      router.push(`/?a=${encodedUrl}`);
     } catch (error) {
       if (error.code === "ECONNABORTED") {
         setWarning(
