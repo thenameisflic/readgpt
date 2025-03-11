@@ -1,4 +1,4 @@
-# ReadGPT.news
+# WIP - ReadGPT.news
 
 ReadGPT.news is a progressive web application that allows users to paste a link to an article, get an AI-generated summary of the content, and start an interactive chat session with the article. It’s designed to help users quickly understand and engage with long-form content using the power of AI.
 
